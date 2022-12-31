@@ -10,4 +10,11 @@ describe('Account', () => {
     const account = new Account()
     expect(account.getBalance()).toBe(0)
    })
+
+   test('should allow users to make a depost', () => { 
+    const account = new Account()
+    expect(account).toHaveProperty('deposit')
+    account.deposit(50)
+    expect(account.getBalance()).toBe(50)
+    })
  })
