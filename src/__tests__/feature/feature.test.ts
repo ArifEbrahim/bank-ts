@@ -19,4 +19,15 @@ describe('Feature tests', () => {
     account.deposit(100)
     expect(account.getBalance()).toBe(100)
   })
+
+  // As a user,
+  // So that I can use my money,
+  // I want to be able to make withdrawls.
+
+  test('users can make withdrawls', () => {
+    const account = new Account()
+    account.deposit(50)
+    account.withdraw(25)
+    expect(account.getBalance()).toEqual(25)
+  })
 })

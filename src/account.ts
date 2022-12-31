@@ -12,4 +12,8 @@ export default class Account {
   deposit(amount: number) {
     this.balance += amount
   }
+
+  withdraw(amount: number) {
+    this.balance -= amount
+  }
 }
