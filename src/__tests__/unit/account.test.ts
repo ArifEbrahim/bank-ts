@@ -52,4 +52,14 @@ describe('Account', () => {
       }).toThrow('Negative numbers are not allowed, please try again.')
     })
   })
+
+  describe('transaction', () => {
+    test('the account starts with an empty history', () => {
+      expect(account.history).toEqual([])
+    })
+    test('it records the date', () => {
+      account.deposit(50);
+      expect(account.history[0].date).toEqual(expect.any(Date));
+    });
+  })
 })

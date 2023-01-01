@@ -1,8 +1,10 @@
 export default class Account {
   private balance: number
+  history: { date: Date }[]
 
   constructor() {
     this.balance = 0
+    this.history = []
   }
 
   getBalance() {
@@ -14,6 +16,9 @@ export default class Account {
       throw new Error('Negative numbers are not allowed, please try again.')
     }
     this.balance += amount
+    this.history.push({
+      date: new Date(),
+    })
   }
 
   withdraw(amount: number) {
