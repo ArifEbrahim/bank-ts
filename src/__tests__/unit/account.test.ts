@@ -21,14 +21,35 @@ describe('Account', () => {
       account.deposit(50)
       expect(account.getBalance()).toBe(50)
     })
+
+    test('should not allow negative deposits', () => {
+      expect(() => {
+        account.deposit(-10)
+      }).toThrow('Negative numbers are not allowed, please try again.')
+    })
   })
 
   describe('Withdraw', () => {
+    beforeEach(() => {
+      account.deposit(50)
+    })
+
     test('should allow users to make a withdrawl', () => {
       expect(account).toHaveProperty('withdraw')
-      account.deposit(100)
       account.withdraw(25)
-      expect(account.getBalance()).toBe(75)
+      expect(account.getBalance()).toBe(25)
+    })
+
+    test('should not allow negative balance', () => {
+      expect(() => {
+        account.withdraw(60)
+      }).toThrow('You have insufficient funds, your balance is 50.')
+    })
+
+    test('should not allow negative withdrawls', () => {
+      expect(() => {
+        account.withdraw(-10)
+      }).toThrow('Negative numbers are not allowed, please try again.')
     })
   })
 })
