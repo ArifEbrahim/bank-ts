@@ -61,5 +61,9 @@ describe('Account', () => {
       account.deposit(50);
       expect(account.history[0].date).toEqual(expect.any(Date));
     });
+    test('it records deposits', () => {
+      account.deposit(50);
+      expect(account.history[0].credit).toEqual(50);
+    });
   })
 })

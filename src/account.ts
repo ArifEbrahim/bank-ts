@@ -1,6 +1,9 @@
 export default class Account {
   private balance: number
-  history: { date: Date }[]
+  history: {
+    date: Date
+    credit: number
+  }[]
 
   constructor() {
     this.balance = 0
@@ -18,6 +21,7 @@ export default class Account {
     this.balance += amount
     this.history.push({
       date: new Date(),
+      credit: amount
     })
   }
 
