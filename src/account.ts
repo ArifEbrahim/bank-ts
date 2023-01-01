@@ -3,6 +3,8 @@ export default class Account {
   history: {
     date: Date
     credit: number
+    debit: number
+    balance: number
   }[]
 
   constructor() {
@@ -21,7 +23,9 @@ export default class Account {
     this.balance += amount
     this.history.push({
       date: new Date(),
-      credit: amount
+      credit: amount,
+      debit: 0,
+      balance: this.balance
     })
   }
 
@@ -34,5 +38,11 @@ export default class Account {
       throw new Error('Negative numbers are not allowed, please try again.')
     }
     this.balance -= amount
+    this.history.push({
+      date: new Date(),
+      credit: 0,
+      debit: amount,
+      balance: this.balance
+    })
   }
 }

@@ -54,16 +54,25 @@ describe('Account', () => {
   })
 
   describe('transaction', () => {
-    test('the account starts with an empty history', () => {
+    test('should with an empty history', () => {
       expect(account.history).toEqual([])
     })
-    test('it records the date', () => {
-      account.deposit(50);
-      expect(account.history[0].date).toEqual(expect.any(Date));
-    });
-    test('it records deposits', () => {
-      account.deposit(50);
-      expect(account.history[0].credit).toEqual(50);
-    });
+    test('should record the date', () => {
+      account.deposit(50)
+      expect(account.history[0].date).toEqual(expect.any(Date))
+    })
+    test('should record deposits', () => {
+      account.deposit(50)
+      expect(account.history[0].credit).toEqual(50)
+    })
+    test('should record withdrawls', () => {
+      account.deposit(50)
+      account.withdraw(25)
+      expect(account.history[1].debit).toEqual(25)
+    })
+    test('should record the balance', () => {
+      account.deposit(50)
+      expect(account.history[0].balance).toEqual(50)
+    })
   })
 })
