@@ -43,10 +43,10 @@ describe('Statement', () => {
   })
 
   describe('for multiple transaction', () => {
-    test('should print correctly formatted transactions', () => {
+    test('should print correctly formatted transactions in reverse chronological order', () => {
       const mockHistory = [mockCreditTransaction, mockDebitTransaction]
       const expectedOutput =
-        'date || credit || debit || balance\n14/01/2012 || 100.00 || || 500.00\n14/01/2012 || || 100.00 || 500.00'
+        'date || credit || debit || balance\n14/01/2012 || || 100.00 || 500.00\n14/01/2012 || 100.00 || || 500.00'
       expect(statement.print(mockHistory)).toBe(expectedOutput)
     })
   })
