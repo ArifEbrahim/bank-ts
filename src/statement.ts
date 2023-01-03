@@ -14,21 +14,23 @@ export default class Statement {
 
   print(history?: transaction[]) {
     if (!history) return this.HEADER
-    let displayString = `${this.HEADER}\n`
+    let displayString = `${this.HEADER}`
 
-    const formattedDate = history[0].date.toLocaleDateString()
-    displayString += `${formattedDate} ||`
+    history.forEach(item => {
+      const formattedDate = item.date.toLocaleDateString()
+      displayString += `\n${formattedDate} ||`
 
-    if (history[0].credit) {
-      const formattedCredit = history[0].credit.toFixed(2)
-      displayString += ` ${formattedCredit} || ||`
-    } else if (history[0].debit) {
-      const formattedDebit = history[0].debit.toFixed(2)
-      displayString += ` || ${formattedDebit} ||`
-    }
+      if (item.credit) {
+        const formattedCredit = item.credit.toFixed(2)
+        displayString += ` ${formattedCredit} || ||`
+      } else if (item.debit) {
+        const formattedDebit = item.debit.toFixed(2)
+        displayString += ` || ${formattedDebit} ||`
+      }
 
-    const formattedBalance = history[0].balance.toFixed(2)
-    displayString += ` ${formattedBalance}`
+      const formattedBalance = item.balance.toFixed(2)
+      displayString += ` ${formattedBalance}`
+    })
 
     return displayString
   }
