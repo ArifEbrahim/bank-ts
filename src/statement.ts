@@ -1,8 +1,8 @@
 type transaction = {
   date: Date
-  credit?: number
-  debit?: number
-  balance?: number
+  credit: number
+  debit: number
+  balance: number
 }
 
 export default class Statement {
@@ -15,8 +15,10 @@ export default class Statement {
   print(history?: transaction[]) {
     if (!history) return this.HEADER
     let displayString = `${this.HEADER}\n`
+
     const formattedDate = history[0].date.toLocaleDateString()
     displayString += `${formattedDate} ||`
+
     if (history[0].credit) {
       const formattedCredit = history[0].credit.toFixed(2)
       displayString += ` ${formattedCredit} || ||`
@@ -24,10 +26,10 @@ export default class Statement {
       const formattedDebit = history[0].debit.toFixed(2)
       displayString += ` || ${formattedDebit} ||`
     }
-    if (history[0].balance) {
-      const formattedBalance = history[0].balance.toFixed(2)
-      displayString += ` ${formattedBalance}`
-    }
+
+    const formattedBalance = history[0].balance.toFixed(2)
+    displayString += ` ${formattedBalance}`
+
     return displayString
   }
 }
