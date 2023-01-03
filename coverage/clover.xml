@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1672782567507" clover="3.2.0">
+  <project timestamp="1672782567507" name="All files">
+    <metrics statements="32" coveredstatements="32" conditionals="10" coveredconditionals="10" methods="14" coveredmethods="14" elements="56" coveredelements="56" complexity="0" loc="32" ncloc="32" packages="1" files="2" classes="2"/>
+    <file name="account.ts" path="/Users/arif.ebrahim/apps/bank-ts/src/account.ts">
+      <metrics statements="19" coveredstatements="19" conditionals="7" coveredconditionals="7" methods="7" coveredmethods="7"/>
+      <line num="2" count="2" type="stmt"/>
+      <line num="4" count="2" type="stmt"/>
+      <line num="10" count="19" type="stmt"/>
+      <line num="11" count="19" type="stmt"/>
+      <line num="12" count="19" type="stmt"/>
+      <line num="16" count="6" type="stmt"/>
+      <line num="20" count="7" type="stmt"/>
+      <line num="24" count="14" type="cond" truecount="1" falsecount="0"/>
+      <line num="25" count="1" type="stmt"/>
+      <line num="27" count="13" type="stmt"/>
+      <line num="28" count="13" type="stmt"/>
+      <line num="32" count="6" type="cond" truecount="2" falsecount="0"/>
+      <line num="33" count="1" type="stmt"/>
+      <line num="36" count="5" type="cond" truecount="1" falsecount="0"/>
+      <line num="37" count="1" type="stmt"/>
+      <line num="39" count="4" type="stmt"/>
+      <line num="40" count="4" type="stmt"/>
+      <line num="44" count="17" type="stmt"/>
+      <line num="53" count="2" type="stmt"/>
+    </file>
+    <file name="statement.ts" path="/Users/arif.ebrahim/apps/bank-ts/src/statement.ts">
+      <metrics statements="13" coveredstatements="13" conditionals="3" coveredconditionals="3" methods="7" coveredmethods="7"/>
+      <line num="3" count="3" type="stmt"/>
+      <line num="7" count="9" type="stmt"/>
+      <line num="11" count="5" type="stmt"/>
+      <line num="13" count="5" type="cond" truecount="1" falsecount="0"/>
+      <line num="15" count="4" type="stmt"/>
+      <line num="16" count="6" type="stmt"/>
+      <line num="17" count="6" type="stmt"/>
+      <line num="18" count="6" type="stmt"/>
+      <line num="21" count="4" type="stmt"/>
+      <line num="25" count="6" type="stmt"/>
+      <line num="29" count="6" type="cond" truecount="2" falsecount="0"/>
+      <line num="35" count="6" type="stmt"/>
+      <line num="39" count="12" type="stmt"/>
+    </file>
+  </project>
+</coverage>
