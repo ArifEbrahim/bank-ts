@@ -40,7 +40,7 @@ export default class Account {
     this.history.push(this.createTransaction(undefined, amount))
   }
 
-  createTransaction(credit = 0, debit = 0) {
+  private createTransaction(credit = 0, debit = 0) {
     return {
       date: new Date(),
       credit,

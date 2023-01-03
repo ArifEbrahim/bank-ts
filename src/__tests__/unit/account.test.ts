@@ -59,22 +59,26 @@ describe('Account', () => {
       const history = account.getHistory()
       expect(history).toEqual([])
     })
+
     test('should record the date', () => {
       account.deposit(50)
       const history = account.getHistory()
       expect(history[0].date).toEqual(expect.any(Date))
     })
+
     test('should record deposits', () => {
       account.deposit(50)
       const history = account.getHistory()
       expect(history[0].credit).toEqual(50)
     })
+    
     test('should record withdrawls', () => {
       account.deposit(50)
       account.withdraw(25)
       const history = account.getHistory()
       expect(history[1].debit).toEqual(25)
     })
+    
     test('should record the balance', () => {
       account.deposit(50)
       const history = account.getHistory()
