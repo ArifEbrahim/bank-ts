@@ -2,6 +2,7 @@ type transaction = {
   date: Date
   credit?: number
   debit?: number
+  balance?: number
 }
 
 export default class Statement {
@@ -22,6 +23,10 @@ export default class Statement {
     } else if (history[0].debit) {
       const formattedDebit = history[0].debit.toFixed(2)
       displayString += ` || ${formattedDebit} ||`
+    }
+    if (history[0].balance) {
+      const formattedBalance = history[0].balance.toFixed(2)
+      displayString += ` ${formattedBalance}`
     }
     return displayString
   }
