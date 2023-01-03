@@ -1,12 +1,15 @@
 import { Transaction } from './types'
+import Statement from './statement'
 
 export default class Account {
   private balance: number
   private history: Transaction[]
+  private statement: Statement
 
-  constructor() {
+  constructor(statement = new Statement()) {
     this.balance = 0
     this.history = []
+    this.statement = statement
   }
 
   getBalance() {
@@ -44,5 +47,9 @@ export default class Account {
       debit,
       balance: this.balance
     }
+  }
+
+  printStatement() {
+    return this.statement.print(this.history)
   }
 }

@@ -44,7 +44,7 @@ describe('Feature tests', () => {
     expect(transaction.date instanceof Date).toBe(true)
   })
 
-    // As a user,
+  // As a user,
   // So that I can see my account history,
   // I want to print an account statment.
 
@@ -52,9 +52,12 @@ describe('Feature tests', () => {
   // So that I can see my latest transactions quickly,
   // I want the statement to be in reverse chronological order.
 
-  // test('should allow users to print a statement with transactions in reverse chronological order', () => {
-  //   account.deposit(50)
-  //   account.withdraw(25)
-  //   expect(transaction.date instanceof Date).toBe(true)
-  // })
+  test('should allow users to print a statement with transactions in reverse chronological order', () => {
+    account.deposit(50)
+    account.withdraw(25)
+    const today = new Date()
+    const expectedOutput = `date || credit || debit || balance\n${today.toLocaleDateString()} || || 25.00 || 25.00\n${today.toLocaleDateString()} || 50.00 || || 50.00`
+    const result = account.printStatement()
+    expect(result).toBe(expectedOutput)
+  })
 })
