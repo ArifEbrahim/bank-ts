@@ -1,11 +1,8 @@
+import { Transaction } from './types'
+
 export default class Account {
   private balance: number
-  private history: {
-    date: Date
-    credit: number
-    debit: number
-    balance: number
-  }[]
+  private history: Transaction[]
 
   constructor() {
     this.balance = 0

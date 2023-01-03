@@ -1,9 +1,4 @@
-type transaction = {
-  date: Date
-  credit: number
-  debit: number
-  balance: number
-}
+import { Transaction } from './types'
 
 export default class Statement {
   private HEADER: string
@@ -12,7 +7,7 @@ export default class Statement {
     this.HEADER = 'date || credit || debit || balance'
   }
 
-  print(history?: transaction[]) {
+  print(history?: Transaction[]) {
     let displayString = `${this.HEADER}`
 
     if (!history) return displayString
