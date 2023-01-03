@@ -1,6 +1,6 @@
 export default class Account {
   private balance: number
-  history: {
+  private history: {
     date: Date
     credit: number
     debit: number
@@ -16,17 +16,16 @@ export default class Account {
     return this.balance
   }
 
+  getHistory() {
+    return this.history
+  }
+
   deposit(amount: number) {
     if (amount < 0) {
       throw new Error('Negative numbers are not allowed, please try again.')
     }
     this.balance += amount
-    this.history.push({
-      date: new Date(),
-      credit: amount,
-      debit: 0,
-      balance: this.balance
-    })
+    this.history.push(this.createTransaction(amount, undefined))
   }
 
   withdraw(amount: number) {
@@ -38,11 +37,15 @@ export default class Account {
       throw new Error('Negative numbers are not allowed, please try again.')
     }
     this.balance -= amount
-    this.history.push({
+    this.history.push(this.createTransaction(undefined, amount))
+  }
+
+  createTransaction(credit = 0, debit = 0) {
+    return {
       date: new Date(),
-      credit: 0,
-      debit: amount,
+      credit,
+      debit,
       balance: this.balance
-    })
+    }
   }
 }

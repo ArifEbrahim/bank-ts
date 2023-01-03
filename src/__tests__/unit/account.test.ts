@@ -53,26 +53,32 @@ describe('Account', () => {
     })
   })
 
-  describe('transaction', () => {
-    test('should with an empty history', () => {
-      expect(account.history).toEqual([])
+  describe('History', () => {
+    test('should start with an empty history', () => {
+      expect(account).toHaveProperty('getHistory')
+      const history = account.getHistory()
+      expect(history).toEqual([])
     })
     test('should record the date', () => {
       account.deposit(50)
-      expect(account.history[0].date).toEqual(expect.any(Date))
+      const history = account.getHistory()
+      expect(history[0].date).toEqual(expect.any(Date))
     })
     test('should record deposits', () => {
       account.deposit(50)
-      expect(account.history[0].credit).toEqual(50)
+      const history = account.getHistory()
+      expect(history[0].credit).toEqual(50)
     })
     test('should record withdrawls', () => {
       account.deposit(50)
       account.withdraw(25)
-      expect(account.history[1].debit).toEqual(25)
+      const history = account.getHistory()
+      expect(history[1].debit).toEqual(25)
     })
     test('should record the balance', () => {
       account.deposit(50)
-      expect(account.history[0].balance).toEqual(50)
+      const history = account.getHistory()
+      expect(history[0].balance).toEqual(50)
     })
   })
 })
