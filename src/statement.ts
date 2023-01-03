@@ -1,5 +1,6 @@
 type transaction = {
   date: Date
+  credit?: number
 }
 
 export default class Statement {
@@ -11,8 +12,13 @@ export default class Statement {
 
   print(history?: transaction[]) {
     if (!history) return this.HEADER
+    let displayString = `${this.HEADER}\n`
     const formattedDate = history[0].date.toLocaleDateString()
-    const displayString = `${this.HEADER}\n${formattedDate}`
+    displayString += `${formattedDate} ||`
+    if (history[0].credit) {
+      const formattedCredit = history[0].credit.toFixed(2)
+      displayString += ` ${formattedCredit} || ||`
+    }
     return displayString
   }
 }
