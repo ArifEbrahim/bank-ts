@@ -14,7 +14,7 @@ export default class Statement {
 
     history.reverse().forEach(item => {
       displayString += this.formattedDate(item.date)
-      displayString += this.formattedCreditOrDebit(item.type, item.amount)
+      displayString += this.formattedAmount(item.type, item.amount)
       displayString += this.formattedBalance(item.balance)
     })
 
@@ -25,7 +25,7 @@ export default class Statement {
     return `\n${date.toLocaleDateString()} ||`
   }
 
-  private formattedCreditOrDebit(type: TransactionType, amount: number) {
+  private formattedAmount(type: TransactionType, amount: number) {
     return type === TransactionType.CREDIT
       ? ` ${this.formatNum(amount)} || ||`
       : ` || ${this.formatNum(amount)} ||`
