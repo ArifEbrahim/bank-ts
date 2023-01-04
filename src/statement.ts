@@ -1,4 +1,5 @@
 import { Transaction } from './types'
+import { TransactionType } from './types'
 
 export default class Statement {
   private HEADER: string
@@ -14,7 +15,7 @@ export default class Statement {
 
     history.reverse().forEach(item => {
       displayString += this.formattedDate(item.date)
-      displayString += this.formattedCreditOrDebit(item.credit, item.debit)
+      displayString += this.formattedCreditOrDebit(item.type, item.amount)
       displayString += this.formattedBalance(item.balance)
     })
 
@@ -25,10 +26,10 @@ export default class Statement {
     return `\n${date.toLocaleDateString()} ||`
   }
 
-  private formattedCreditOrDebit(credit: number, debit: number) {
-    return credit
-      ? ` ${this.formatNum(credit)} || ||`
-      : ` || ${this.formatNum(debit)} ||`
+  private formattedCreditOrDebit(type: TransactionType, amount: number) {
+    return type === TransactionType.CREDIT
+      ? ` ${this.formatNum(amount)} || ||`
+      : ` || ${this.formatNum(amount)} ||`
   }
 
   private formattedBalance(balance: number) {

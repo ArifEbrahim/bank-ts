@@ -1,6 +1,7 @@
 import Account from '../../account'
 import Statement from '../../statement'
 jest.mock('../../statement')
+import { TransactionType } from '../../types'
 
 describe('Account', () => {
   let account: Account
@@ -78,17 +79,17 @@ describe('Account', () => {
       expect(history[0].date).toEqual(expect.any(Date))
     })
 
-    test('should record deposits', () => {
+    test('should record TransactionType', () => {
       account.deposit(50)
       const history = account.getHistory()
-      expect(history[0].credit).toEqual(50)
+      expect(history[0].type).toEqual(TransactionType.CREDIT)
     })
 
-    test('should record withdrawls', () => {
+    test('should record amount', () => {
       account.deposit(50)
       account.withdraw(25)
       const history = account.getHistory()
-      expect(history[1].debit).toEqual(25)
+      expect(history[1].amount).toEqual(25)
     })
 
     test('should record the balance', () => {

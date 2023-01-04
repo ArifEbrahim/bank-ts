@@ -1,19 +1,20 @@
 import Statement from '../../statement'
+import { TransactionType } from '../../types'
 
 describe('Statement', () => {
   let statement: Statement
 
   const mockCreditTransaction = {
     date: new Date(' January 14, 2012, 11:00:00'),
-    credit: 100,
-    debit: 0,
+    type: TransactionType.CREDIT,
+    amount: 100,
     balance: 500
   }
 
   const mockDebitTransaction = {
     date: new Date(' January 14, 2012, 11:00:00'),
-    credit: 0,
-    debit: 100,
+    type: TransactionType.DEBIT,
+    amount: 100,
     balance: 500
   }
 
