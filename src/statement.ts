@@ -1,5 +1,4 @@
-import { Transaction } from './types'
-import { TransactionType } from './types'
+import { Transaction, TransactionType } from './types'
 
 export default class Statement {
   private HEADER: string
