@@ -4,3 +4,8 @@ export interface Transaction {
   debit: number
   balance: number
 }
+
+export enum TransactionType {
+  Credit,
+  Debit
+}
