@@ -1,7 +1,7 @@
 import { Transaction, TransactionType } from './types'
 
 export default class Statement {
-  private HEADER: string
+  private readonly HEADER: string
 
   constructor() {
     this.HEADER = 'date || credit || debit || balance'
