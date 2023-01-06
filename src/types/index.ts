@@ -9,3 +9,8 @@ export enum TransactionType {
   CREDIT,
   DEBIT
 }
+
+export interface IStatement {
+  readonly HEADER: string
+  print(history: Transaction[]): string
+}

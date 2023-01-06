@@ -1,9 +1,9 @@
-import { Transaction, TransactionType } from './types'
+import { Transaction, TransactionType, IStatement } from './types'
 import Statement from './statement'
 
 export default class Account {
   constructor(
-    private statement: Statement = new Statement(),
+    private statement: IStatement = new Statement(),
     private balance: number = 0,
     private history: Transaction[] = []
   ) {}

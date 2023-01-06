@@ -1,7 +1,7 @@
-import { Transaction, TransactionType } from './types'
+import { Transaction, TransactionType, IStatement } from './types'
 
-export default class Statement {
-  private readonly HEADER: string
+class Statement implements IStatement {
+  readonly HEADER: string
 
   constructor() {
     this.HEADER = 'date || credit || debit || balance'
@@ -39,3 +39,5 @@ export default class Statement {
     return value.toFixed(2)
   }
 }
+
+export default Statement
