@@ -1,12 +1,17 @@
 import Account from '../../account'
 
 describe('Feature tests', () => {
+  let account: Account
+
+  beforeEach(() => {
+    account = new Account()
+  })
+
   // As a user,
   // So that I can manage my money,
   // I want to create a bank account.
 
   test('should allows users to create an empty bank account', () => {
-    const account = new Account()
     expect(account.getBalance()).toBe(0)
   })
 
@@ -15,7 +20,6 @@ describe('Feature tests', () => {
   // I want to be able to make deposits.
 
   test('should allow users to deposit money into their account', () => {
-    const account = new Account()
     account.deposit(100)
     expect(account.getBalance()).toBe(100)
   })
@@ -24,10 +28,36 @@ describe('Feature tests', () => {
   // So that I can use my money,
   // I want to be able to make withdrawls.
 
-  test('users can make withdrawls', () => {
-    const account = new Account()
+  test('should allow users to make withdrawls from their account', () => {
     account.deposit(50)
     account.withdraw(25)
     expect(account.getBalance()).toEqual(25)
+  })
+
+  // As a user,
+  // So that I can track my account activity over time,
+  // I want the date of each transaction to be recorded.
+
+  test('should record the date of a transaction', () => {
+    account.deposit(50)
+    const transaction = account.getHistory()[0]
+    expect(transaction.date instanceof Date).toBe(true)
+  })
+
+  // As a user,
+  // So that I can see my account history,
+  // I want to print an account statment.
+
+  // As a user,
+  // So that I can see my latest transactions quickly,
+  // I want the statement to be in reverse chronological order.
+
+  test('should allow users to print a statement with transactions in reverse chronological order', () => {
+    account.deposit(50)
+    account.withdraw(25)
+    const today = new Date()
+    const expectedOutput = `date || credit || debit || balance\n${today.toLocaleDateString()} || || 25.00 || 25.00\n${today.toLocaleDateString()} || 50.00 || || 50.00`
+    const result = account.printStatement()
+    expect(result).toBe(expectedOutput)
   })
 })

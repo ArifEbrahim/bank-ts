@@ -1,19 +1,23 @@
+import { Transaction, TransactionType } from './types'
+import Statement from './statement'
+
 export default class Account {
   private balance: number
-  history: {
-    date: Date
-    credit: number
-    debit: number
-    balance: number
-  }[]
+  private history: Transaction[]
+  private statement: Statement
 
-  constructor() {
+  constructor(statement = new Statement()) {
     this.balance = 0
     this.history = []
+    this.statement = statement
   }
 
   getBalance() {
     return this.balance
+  }
+
+  getHistory() {
+    return this.history
   }
 
   deposit(amount: number) {
@@ -21,12 +25,7 @@ export default class Account {
       throw new Error('Negative numbers are not allowed, please try again.')
     }
     this.balance += amount
-    this.history.push({
-      date: new Date(),
-      credit: amount,
-      debit: 0,
-      balance: this.balance
-    })
+    this.addToHistory(TransactionType.CREDIT, amount)
   }
 
   withdraw(amount: number) {
@@ -38,11 +37,27 @@ export default class Account {
       throw new Error('Negative numbers are not allowed, please try again.')
     }
     this.balance -= amount
-    this.history.push({
+    this.addToHistory(TransactionType.DEBIT, amount)
+  }
+
+  private createTransaction(type: TransactionType, amount: number) {
+    return {
       date: new Date(),
-      credit: 0,
-      debit: amount,
+      type,
+      amount,
       balance: this.balance
-    })
+    }
+  }
+
+  printStatement() {
+    return this.statement.print(this.history)
+  }
+
+  private addToHistory(type: TransactionType, amount: number) {
+    if (type === TransactionType.CREDIT) {
+      this.history.push(this.createTransaction(TransactionType.CREDIT, amount))
+    } else {
+      this.history.push(this.createTransaction(TransactionType.DEBIT, amount))
+    }
   }
 }

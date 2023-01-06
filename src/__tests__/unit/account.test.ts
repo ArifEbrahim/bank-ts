@@ -1,10 +1,15 @@
 import Account from '../../account'
+import Statement from '../../statement'
+jest.mock('../../statement')
+import { TransactionType } from '../../types'
 
 describe('Account', () => {
   let account: Account
+  let mockStatement: Statement
 
   beforeEach(() => {
-    account = new Account()
+    mockStatement = new Statement()
+    account = new Account(mockStatement)
   })
 
   test('should have a method that returns the balance', () => {
@@ -53,26 +58,52 @@ describe('Account', () => {
     })
   })
 
-  describe('transaction', () => {
-    test('should with an empty history', () => {
-      expect(account.history).toEqual([])
+  describe('History', () => {
+    test('should start with an empty history', () => {
+      expect(account).toHaveProperty('getHistory')
+      const history = account.getHistory()
+      expect(history).toEqual([])
     })
+
+    test('should store transactions within the history', () => {
+      account.deposit(10)
+      const history = account.getHistory()
+      expect(history.length).toEqual(1)
+    })
+  })
+
+  describe('Transaction', () => {
     test('should record the date', () => {
       account.deposit(50)
-      expect(account.history[0].date).toEqual(expect.any(Date))
+      const history = account.getHistory()
+      expect(history[0].date).toEqual(expect.any(Date))
     })
-    test('should record deposits', () => {
+
+    test('should record TransactionType', () => {
       account.deposit(50)
-      expect(account.history[0].credit).toEqual(50)
+      const history = account.getHistory()
+      expect(history[0].type).toEqual(TransactionType.CREDIT)
     })
-    test('should record withdrawls', () => {
+
+    test('should record amount', () => {
       account.deposit(50)
       account.withdraw(25)
-      expect(account.history[1].debit).toEqual(25)
+      const history = account.getHistory()
+      expect(history[1].amount).toEqual(25)
     })
+
     test('should record the balance', () => {
       account.deposit(50)
-      expect(account.history[0].balance).toEqual(50)
+      const history = account.getHistory()
+      expect(history[0].balance).toEqual(50)
+    })
+  })
+
+  describe('Print Statement', () => {
+    test('should print an account statement', () => {
+      jest.spyOn(mockStatement, 'print')
+      account.printStatement()
+      expect(mockStatement.print).toHaveBeenCalledWith([])
     })
   })
 })
