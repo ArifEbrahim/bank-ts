@@ -13,18 +13,18 @@ describe('Account', () => {
   })
 
   test('should have a method that returns the balance', () => {
-    expect(account).toHaveProperty('getBalance')
+    expect(account).toHaveProperty('currentBalance')
   })
 
   test('should start with a balance of 0', () => {
-    expect(account.getBalance()).toBe(0)
+    expect(account.currentBalance).toBe(0)
   })
 
   describe('Deposit', () => {
     test('should allow users to make a depost', () => {
       expect(account).toHaveProperty('deposit')
       account.deposit(50)
-      expect(account.getBalance()).toBe(50)
+      expect(account.currentBalance).toBe(50)
     })
 
     test('should not allow negative deposits', () => {
@@ -42,7 +42,7 @@ describe('Account', () => {
     test('should allow users to make a withdrawl', () => {
       expect(account).toHaveProperty('withdraw')
       account.withdraw(25)
-      expect(account.getBalance()).toBe(25)
+      expect(account.currentBalance).toBe(25)
     })
 
     test('should not allow negative balance', () => {
@@ -60,14 +60,14 @@ describe('Account', () => {
 
   describe('History', () => {
     test('should start with an empty history', () => {
-      expect(account).toHaveProperty('getHistory')
-      const history = account.getHistory()
+      expect(account).toHaveProperty('latestHistory')
+      const history = account.latestHistory
       expect(history).toEqual([])
     })
 
     test('should store transactions within the history', () => {
       account.deposit(10)
-      const history = account.getHistory()
+      const history = account.latestHistory
       expect(history.length).toEqual(1)
     })
   })
@@ -75,26 +75,26 @@ describe('Account', () => {
   describe('Transaction', () => {
     test('should record the date', () => {
       account.deposit(50)
-      const history = account.getHistory()
+      const history = account.latestHistory
       expect(history[0].date).toEqual(expect.any(Date))
     })
 
     test('should record TransactionType', () => {
       account.deposit(50)
-      const history = account.getHistory()
+      const history = account.latestHistory
       expect(history[0].type).toEqual(TransactionType.CREDIT)
     })
 
     test('should record amount', () => {
       account.deposit(50)
       account.withdraw(25)
-      const history = account.getHistory()
+      const history = account.latestHistory
       expect(history[1].amount).toEqual(25)
     })
 
     test('should record the balance', () => {
       account.deposit(50)
-      const history = account.getHistory()
+      const history = account.latestHistory
       expect(history[0].balance).toEqual(50)
     })
   })

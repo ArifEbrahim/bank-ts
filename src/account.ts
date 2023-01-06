@@ -2,21 +2,17 @@ import { Transaction, TransactionType } from './types'
 import Statement from './statement'
 
 export default class Account {
-  private balance: number
-  private history: Transaction[]
-  private statement: Statement
+  constructor(
+    private statement: Statement = new Statement(),
+    private balance: number = 0,
+    private history: Transaction[] = []
+  ) {}
 
-  constructor(statement = new Statement()) {
-    this.balance = 0
-    this.history = []
-    this.statement = statement
-  }
-
-  getBalance() {
+  get currentBalance() {
     return this.balance
   }
 
-  getHistory() {
+  get latestHistory() {
     return this.history
   }
 

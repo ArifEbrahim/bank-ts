@@ -12,7 +12,7 @@ describe('Feature tests', () => {
   // I want to create a bank account.
 
   test('should allows users to create an empty bank account', () => {
-    expect(account.getBalance()).toBe(0)
+    expect(account.currentBalance).toBe(0)
   })
 
   // As a user,
@@ -21,7 +21,7 @@ describe('Feature tests', () => {
 
   test('should allow users to deposit money into their account', () => {
     account.deposit(100)
-    expect(account.getBalance()).toBe(100)
+    expect(account.currentBalance).toBe(100)
   })
 
   // As a user,
@@ -31,7 +31,7 @@ describe('Feature tests', () => {
   test('should allow users to make withdrawls from their account', () => {
     account.deposit(50)
     account.withdraw(25)
-    expect(account.getBalance()).toEqual(25)
+    expect(account.currentBalance).toEqual(25)
   })
 
   // As a user,
@@ -40,7 +40,7 @@ describe('Feature tests', () => {
 
   test('should record the date of a transaction', () => {
     account.deposit(50)
-    const transaction = account.getHistory()[0]
+    const transaction = account.latestHistory[0]
     expect(transaction.date instanceof Date).toBe(true)
   })
 
