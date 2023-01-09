@@ -13,9 +13,10 @@ class Statement implements IStatement {
     if (!history) return displayString
 
     history.reverse().forEach(item => {
-      displayString += this.formattedDate(item.date)
-      displayString += this.formattedAmount(item.type, item.amount)
-      displayString += this.formattedBalance(item.balance)
+      const { date, type, amount, balance } = item
+      displayString += this.formattedDate(date)
+      displayString += this.formattedAmount(type, amount)
+      displayString += this.formattedBalance(balance)
     })
 
     return displayString

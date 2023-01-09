@@ -14,3 +14,11 @@ export interface IStatement {
   readonly HEADER: string
   print(history: Transaction[]): string
 }
+
+export interface IAccount {
+  deposit: (amount: number) => void
+  withdraw: (amount: number) => void
+  printStatement: () => string
+  currentBalance: number
+  latestHistory: Transaction[]
+}
